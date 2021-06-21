@@ -1,4 +1,9 @@
+<?php
 
+if (!isset($_COOKIE['islogin'])) {
+    header("location:login.php");
+  } else{
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,6 +36,11 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
+    
+
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+
 </head>
 <body>
 
@@ -51,7 +61,7 @@
                 </a>
             </div>
 <?php
-$page = $_GET['page'];
+$page=isset($_GET['page']) ? $_GET['page'] : 'home';
 
 ?>
             <ul class="nav">
@@ -71,6 +81,12 @@ $page = $_GET['page'];
                     <a href="?page=topup">
                         <i class="pe-7s-note2"></i>
                         <p>Top Up</p>
+                    </a>
+                </li>
+                <li class=<?php if($page=='customer' || $page==null) {echo "active";}?>>
+                    <a href="?page=customer">
+                        <i class="pe-7s-headphones"></i>
+                        <p>Customer</p>
                     </a>
                 </li>
 
@@ -93,6 +109,7 @@ $page = $_GET['page'];
                         if($page=='home' || $page==null) {echo "Dashboard";}
                         elseif($page=='user' || $page==null) {echo "List Client";}
                         elseif($page=='topup' || $page==null) {echo "Top Up ";}
+                        elseif($page=='customer' || $page==null) {echo "List Customers ";}
                     ?>
                     </a>
 
@@ -108,7 +125,7 @@ $page = $_GET['page'];
                     <ul class="nav navbar-nav navbar-right">
                        
                         <li>
-                            <a href="#">
+                            <a href="logout.php">
                                 <p>Log out</p>
                             </a>
                         </li>
@@ -162,4 +179,8 @@ $page = $_GET['page'];
 
 	
 </html>
+
+<?php
+  }
+  ?>
 

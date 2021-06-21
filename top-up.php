@@ -1,9 +1,25 @@
+<?php
+include 'koneksi.php';
 
+?>
  <div class="content">
 <form action="addtopup.php" method="post">
     <div class="form-group">
+        <?php
+        $sql = mysqli_query($conn,"select * from busagency");
+
+
+        ?>
         <label>Username</label>
-        <input type="text" name="username" class="form-control" placeholder="Masukan Username" required/>
+        <select name="username" id="" class="form-control">
+            <?php
+                while($data = mysqli_fetch_array($sql)){
+            ?>
+            <option value="<?=$data['id_busagency']?>"><?=$data['name_agency']?></option>
+            <?php
+                }
+            ?>
+        </select>
 
     </div>
     
